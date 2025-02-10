@@ -1,0 +1,8 @@
+# Ignore the node_modules folder, which contains installed dependencies
+node_modules/*
+
+# Ignore the dist folder, where compiled or built files are stored
+dist/*
+
+# Ignore environment configuration files containing sensitive data
+.env
