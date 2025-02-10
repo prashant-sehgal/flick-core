@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from 'express'
 import * as baseContoller from '../utils/BaseController'
 import Movie from '../models/movieModel'
 
