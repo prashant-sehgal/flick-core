@@ -72,13 +72,36 @@ const movieSchema = new mongoose.Schema<MovieObject>(
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt timestamps
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 )
+
+movieSchema.virtual('cardUrl').get(function (this: MovieObject) {
+  return `${process.env.AZURE_STORAGE_ASSETS_READ_URL}`.replace(
+    '<blobName>',
+    `cards/${this.card}`
+  )
+})
+
+movieSchema.virtual('posterUrl').get(function (this: MovieObject) {
+  return `${process.env.AZURE_STORAGE_ASSETS_READ_URL}`.replace(
+    '<blobName>',
+    `posters/${this.poster}`
+  )
+})
 
 // Pre-save middleware to convert all genres to lowercase before saving the movie document
 movieSchema.pre('save', function (this: MovieObject) {
   this.genres = this.genres.map((genre) => genre.toLowerCase())
 })
+
+// movieSchema.pre(/^find/, function (this: MovieObject) {
+//   this.card = `${process.env.AZURE_STORAGE_ASSETS_READ_URL}`.replace(
+//     '<blobName',
+//     `/cards/${this.card}`
+//   )
+// })
 
 // Create and export the Movie model based on the schema
 const Movie = mongoose.model<MovieObject>('Movie', movieSchema)
