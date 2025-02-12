@@ -1,7 +1,11 @@
 import { Router } from 'express'
 import * as watchListController from '../controllers/watchListController'
+import * as authController from '../controllers/authController'
 
 const router = Router()
+
+// middleware to authenticate routes specified below it
+router.use(authController.authenticate)
 
 // Define routes for retrieving all watchlists and creating a new watchlist
 router
