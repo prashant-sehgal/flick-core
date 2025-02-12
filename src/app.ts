@@ -7,6 +7,7 @@ import GlobalErrorHandler from './utils/GlobalErrorHandler' //  global error han
 // Import route handlers for different resources
 import movieRouter from './routes/movieRoutes'
 import streamRouter from './routes/streamRoutes'
+import watchListRouter from './routes/watchListRoutes'
 
 const app = express() // Initialize Express application
 
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'))
 // Middleware to mount various route handlers for different API resources
 app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/streams', streamRouter)
+app.use('/api/v1/watchList', watchListRouter)
 
 // Global error handling middleware to manage application-wide errors
 app.use(GlobalErrorHandler)
