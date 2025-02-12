@@ -78,7 +78,7 @@ export const uploadContent = CatchAsync(async function (
   if (files.media) {
     const blobName = `media-${Math.round(
       Math.random() * 1_000_000
-    )}-${Date.now()}.webp`
+    )}-${Date.now()}.mp4`
 
     const blockBlobClient = mediaContainerClient.getBlockBlobClient(blobName)
 

@@ -2,6 +2,7 @@
 import express from 'express' // Express framework for handling server routes
 import cors from 'cors' // CORS middleware to handle cross-origin requests
 import morgan from 'morgan' // Morgan middleware for logging HTTP requests
+
 import GlobalErrorHandler from './utils/GlobalErrorHandler' //  global error handling middleware to manage application-wide errors
 
 // Import route handlers for different resources
