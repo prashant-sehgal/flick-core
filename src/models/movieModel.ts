@@ -96,13 +96,6 @@ movieSchema.pre('save', function (this: MovieObject) {
   this.genres = this.genres.map((genre) => genre.toLowerCase())
 })
 
-// movieSchema.pre(/^find/, function (this: MovieObject) {
-//   this.card = `${process.env.AZURE_STORAGE_ASSETS_READ_URL}`.replace(
-//     '<blobName',
-//     `/cards/${this.card}`
-//   )
-// })
-
 // Create and export the Movie model based on the schema
 const Movie = mongoose.model<MovieObject>('Movie', movieSchema)
 
