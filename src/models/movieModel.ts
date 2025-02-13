@@ -78,15 +78,6 @@ const movieSchema = new mongoose.Schema<MovieObject>(
 )
 
 movieSchema.virtual('cardUrl').get(function (this: MovieObject) {
-  console.log({ card: this.card })
-  console.log({ rawLink: process.env.AZURE_STORAGE_ASSETS_READ_URL })
-  console.log({
-    cardLink: process.env.AZURE_STORAGE_ASSETS_READ_URL?.replace(
-      '<blobName>',
-      `cards/${this.card}`
-    ),
-  })
-
   return `${process.env.AZURE_STORAGE_ASSETS_READ_URL}`.replace(
     '<blobName>',
     `cards/${this.card}`
