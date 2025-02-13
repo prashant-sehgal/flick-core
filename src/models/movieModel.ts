@@ -1,3 +1,4 @@
+import { NextFunction } from 'express'
 import mongoose, { Document } from 'mongoose'
 
 // Define an interface for the Movie document, extending Mongoose's Document
@@ -92,8 +93,16 @@ movieSchema.virtual('posterUrl').get(function (this: MovieObject) {
 })
 
 // Pre-save middleware to convert all genres to lowercase before saving the movie document
-movieSchema.pre('save', function (this: MovieObject) {
+movieSchema.pre('save', function (this) {
   this.genres = this.genres.map((genre) => genre.toLowerCase())
+})
+
+// Pre-save middleware to convert all genres to lowercase before saving the movie document
+movieSchema.pre('findOneAndUpdate', function (this) {
+  const updates: any = this.getUpdate()
+
+  if (updates.genres)
+    updates.genres = updates.genres.map((genre: string) => genre.toLowerCase())
 })
 
 // Create and export the Movie model based on the schema
