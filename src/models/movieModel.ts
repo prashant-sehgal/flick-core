@@ -9,6 +9,7 @@ export interface MovieObject extends Document {
   duration: number
   imdbRating: number
   releasedYear: number
+  featured: boolean
   card: string
   poster: string
   media: string
@@ -57,6 +58,10 @@ const movieSchema = new mongoose.Schema<MovieObject>(
     releasedYear: {
       type: Number,
       required: [true, 'Movie must have a release year'], // Release date is mandatory
+    },
+    featured: {
+      type: Boolean,
+      default: false,
     },
     card: {
       type: String,
